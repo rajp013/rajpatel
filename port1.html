@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Raj Patel — Cybersecurity Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            mono: ['Roboto Mono', 'monospace'],
+          },
+          colors: {
+            'cyber-green': '#00F0A0',
+            'cyber-green-dark': '#00C080',
+            'bg-dark': '#0A0E1A',
+            'bg-card': '#0F1724',
+            'text-primary': '#E6EEF8',
+            'text-secondary': '#9AA7C7'
+          },
+          backgroundImage: {
+            'radial-glow': 'radial-gradient(600px 600px at 10% 10%, rgba(0,240,160,0.08), transparent 10%), radial-gradient(500px 500px at 90% 90%, rgba(0,192,128,0.05), transparent 12%)'
+          },
+          boxShadow: {
+            'card-lg': '0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --accent: #00F0A0;
+      --accent-2: #00C080;
+      --bg: #0A0E1A;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background-image: linear-gradient(180deg, rgba(2, 6, 23, 0.6), rgba(6, 10, 20, 0.9)), radial-gradient(circle at 10% 10%, rgba(0, 240, 160, 0.03), transparent 6%), radial-gradient(circle at 90% 90%, rgba(0, 192, 128, 0.02), transparent 8%);
+      background-color: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: #E6EEF8;
+    }
+
+    /* modern scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #0b1320, #08101a);
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.02)
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, var(--accent), var(--accent-2))
+    }
+
+    /* Glass cards */
+    .glass {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* Hero gradient text */
+    .hero-gradient {
+      background: linear-gradient(90deg, #fff, var(--accent) 30%, #7ef0c2 60%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .card-pop {
+      transition: transform .2s ease, border-color .3s ease;
+    }
+
+    .card-pop:hover {
+      transform: translateY(-4px);
+      /* Reduced hover glow for secondary cards */
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .toggle-btn:disabled {
+      opacity: 0.5;
+      cursor: wait;
+    }
+
+
+    /* Soft glow for accents */
+    .accent-glow {
+      text-shadow: 0 0 20px rgba(0, 240, 160, 0.4);
+    }
+
+    /* Strong glow for section titles */
+    .text-glow {
+      text-shadow: 0 0 15px rgba(0, 240, 160, 0.3);
+    }
+
+    /* Card hover pop */
+    .card-pop {
+      transition: transform .28s cubic-bezier(.2, .9, .2, 1), box-shadow .28s;
+    }
+
+    .card-pop:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+      border-color: rgba(0, 240, 160, 0.12);
+    }
+
+    /* Action badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .45rem .6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .8rem;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* small monospace hint */
+    .mono-small {
+      font-family: 'Roboto Mono', monospace;
+      font-size: .86rem;
+      color: var(--accent);
+    }
+
+    /* subtle separator */
+    .sep {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+      margin: 1.25rem 0;
+    }
+  </style>
+</head>
+
+<body class="bg-bg-dark text-text-primary antialiased">
+
+  <header class="sticky top-4 z-50">
+    <nav
+      class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between bg-bg-card/60 glass rounded-xl border border-transparent shadow-sm">
+      <div class="flex items-center gap-4">
+        <div
+          class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-400/20 to-green-400/10 flex items-center justify-center text-sm font-semibold text-white border border-cyber-green/10">
+          RP
+        </div>
+        <div>
+          <a href="#" class="block text-lg font-semibold hero-gradient accent-glow">Raj Patel</a>
+          <div class="text-xs text-text-secondary mono-small">Cybersecurity · PHP · Pentest</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#projects"
+          class="badge text-text-secondary hover:text-black hover:bg-cyber-green transition">Projects</a>
+        <a href="#experience" class="badge text-text-secondary">Experience</a>
+        <a href="Raj_Patel.pdf" target="_blank" class="badge text-text-secondary">Resume</a>
+        <a href="#contact"
+          class="ml-2 px-3 py-1 rounded-md bg-cyber-green text-black font-semibold hover:bg-cyber-green-dark transition">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <section id="boot" class="text-left font-mono text-cyber-green text-sm mb-16"
+    style="width: 60%; margin: 3rem auto 0 auto">
+    <pre id="terminal" class="leading-6 bg-bg-card border border-cyber-green/30 rounded p-4 overflow-hidden"></pre>
+  </section>
+  <main id="site" class="max-w-6xl mx-auto px-6 py-16" style="display:none">
+
+    <!-- Terminal Intro -->
+
+
+    <!-- Hero -->
+    <section class="text-center mb-24 fade-in" id="hero">
+      <div class="max-w-4xl mx-auto p-8 rounded-2xl glass card-pop border border-cyber-green/10">
+        <div class="md:flex md:items-center md:gap-8">
+          <div class="flex-shrink-0">
+            <div
+              class="w-28 h-28 rounded-2xl bg-gradient-to-br from-cyber-green/10 to-cyber-green-dark/6 flex items-center justify-center text-2xl font-bold text-white border border-cyber-green/8">
+              <img src="avatar_copy.png" class="w-full h-full object-cover rounded-2xl">
+            </div>
+          </div>
+
+          <div class="mt-4 md:mt-0">
+            <h1 class="text-4xl md:text-5xl font-extrabold hero-gradient">Raj Patel</h1>
+            <p class="mt-1 text-text-secondary mono-small">Offensive Security · Secure Web Development · Vulnerability
+              Research
+            </p>
+
+            <p class="mt-4 text-text-secondary max-w-2xl leading-relaxed">
+              I identify critical web application vulnerabilities and turn them into hardened, production-ready systems.
+              My work focuses on offensive testing, secure PHP architecture, and closing real-world attack surfaces
+              before they become incidents.
+            </p>
+
+
+            <div class="mt-5 flex flex-wrap gap-3 items-center">
+              <a href="#projects"
+                class="px-4 py-2 rounded-md bg-gradient-to-r from-cyber-green to-cyber-green-dark text-black font-semibold shadow-sm hover:scale-[1.02] transition">View
+                Work</a>
+              <a href="https://github.com/rajp013"
+                class="px-3 py-2 border border-transparent rounded-md text-text-secondary hover:text-white hover:border-cyber-green transition">GitHub</a>
+              <a href="https://www.linkedin.com/in/rajp13/"
+                class="px-3 py-2 border border-transparent rounded-md text-text-secondary hover:text-white hover:border-cyber-green transition">LinkedIn</a>
+              <span class="badge">OWASP · PHP · Burp</span>
+            </div>
+          </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-text-secondary">
+          <div class="p-2 rounded bg-bg-dark/50 border border-cyber-green/6">
+            <div class="mono-small">Location</div>
+            <div class="font-semibold">Bardoli, Surat</div>
+          </div>
+          <div class="p-2 rounded bg-bg-dark/50 border border-cyber-green/6">
+            <div class="mono-small">Languages</div>
+            <div class="font-semibold">EN · HI · GU</div>
+          </div>
+          <div class="p-2 rounded bg-bg-dark/50 border border-cyber-green/6">
+            <div class="mono-small">Focus</div>
+            <div class="font-semibold">VAPT, Admin Panels</div>
+          </div>
+          <div class="p-2 rounded bg-bg-dark/50 border border-cyber-green/6">
+            <div class="mono-small">Contact</div>
+            <div class="font-semibold"><a href="mailto:praj01371@gmail.com" class="text-cyber-green">Email</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mb-24 fade-in">
+      <h3 class="text-3xl font-bold text-white mb-8 text-center text-glow">About Me</h3>
+      <div class="bg-bg-card p-8 rounded-lg border border-white/5 max-w-4xl mx-auto">
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Cybersecurity Analyst and Penetration Tester dedicated to breaking insecure systems and rebuilding them
+          securely. Skilled in PHP application security, VAPT execution, and secure coding implementation, with a strong
+          focus on turning vulnerabilities into long-term defensive improvements.
+        </p>
+      </div>
+    </section>
+
+    <!-- Expertise -->
+    <section class="mb-24 fade-in">
+      <h3 class="text-3xl font-bold text-white mb-10 text-center text-glow">Area of Expertise</h3>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- Offensive -->
+        <div class="bg-bg-card p-6 rounded border border-white/5">
+          <h4 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span class="text-cyber-green">⚔️</span> Offensive
+          </h4>
+          <ul class="space-y-3 text-text-secondary">
+            <li class="flex items-center gap-3">
+              <span class="text-cyber-green text-lg">›</span>
+              <span>Web App Pentesting</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-cyber-green text-lg">›</span>
+              <span>OWASP Top 10</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Defensive -->
+        <div class="bg-bg-card p-6 rounded border border-white/5">
+          <h4 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span class="text-cyber-green">🛡️</span> Defensive
+          </h4>
+          <ul class="space-y-3 text-text-secondary">
+            <li class="flex items-center gap-3">
+              <span class="text-cyber-green text-lg">›</span>
+              <span>Secure Coding (PHP)</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-cyber-green text-lg">›</span>
+              <span>Code Review & Patching</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Engineering -->
+        <div class="bg-bg-card p-6 rounded border border-white/5">
+          <h4 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span class="text-cyber-green">⚙️</span> Engineering
+          </h4>
+          <ul class="space-y-3 text-text-secondary">
+            <li class="flex items-center gap-3">
+              <span class="text-cyber-green text-lg">›</span>
+              <span>Admin Panel Architecture</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-cyber-green text-lg">›</span>
+              <span>Auth Systems</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Attack & Defense Lab -->
+    <section id="lab" class="mb-24 fade-in">
+      <h3 class="text-3xl font-bold text-white mb-8 text-center hero-gradient text-glow">Attack & Defense Lab</h3>
+      <p class="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
+        Real-world vulnerabilities — shown the way hackers see them, and the way defenders fix them.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+
+        <!-- SQL Injection Demo -->
+        <div class="glass border border-white/5 rounded-xl overflow-hidden shadow-md card-pop">
+          <div class="bg-bg-card/70 px-5 py-3 flex items-center justify-between border-b border-cyber-green/10">
+            <span class="font-semibold text-cyber-green">SQL Injection</span>
+            <button class="px-3 py-1 text-xs font-semibold rounded bg-cyber-green text-black toggle-btn"
+              data-target="sql">View Defense</button>
+          </div>
+          <pre id="sql-display" class="p-4 text-sm text-text-secondary font-mono whitespace-pre-wrap leading-6"></pre>
+        </div>
+
+        <!-- XSS Demo -->
+        <div class="glass border border-white/5 rounded-xl overflow-hidden shadow-md card-pop">
+          <div class="bg-bg-card/70 px-5 py-3 flex items-center justify-between border-b border-cyber-green/10">
+            <span class="font-semibold text-cyber-green">Cross-Site Scripting (XSS)</span>
+            <button class="px-3 py-1 text-xs font-semibold rounded bg-cyber-green text-black toggle-btn"
+              data-target="xss">View Defense</button>
+          </div>
+          <pre id="xss-display" class="p-4 text-sm text-text-secondary font-mono whitespace-pre-wrap leading-6"></pre>
+        </div>
+
+      </div>
+
+      <!-- <p class="text-center text-sm text-text-secondary mt-8">
+        Each vulnerability flips between attack and defense mode — showing secure coding in action.
+      </p> -->
+    </section>
+
+
+
+    <!-- Projects -->
+    <section id="projects" class="mb-24 fade-in">
+      <h3 class="text-3xl font-bold text-white mb-10 text-center text-glow">Highlighted Repositories</h3>
+      <div id="repos" class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto" aria-live="polite"></div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="mb-24 fade-in">
+      <h3 class="text-3xl font-bold text-white mb-10 text-center text-glow">Experience</h3>
+      <div class="space-y-10 max-w-4xl mx-auto">
+        <!-- Role 1 -->
+        <div class="bg-bg-card p-8 rounded-lg border border-white/5">
+          <h4 class="text-2xl font-bold text-white">Cybersecurity Analyst & PHP Developer</h4>
+          <p class="text-cyber-green mb-2">Jemistry Info Solutions LLP, India · 2023 – Present</p>
+          <ul class="list-disc list-inside text-text-secondary space-y-2 text-sm leading-relaxed">
+            <li>Conducted vulnerability assessments and penetration tests across internal and client web applications,
+              identifying critical flaws.</li>
+            <li>Built and maintained dynamic PHP applications and secure backend admin systems for B2B clients.</li>
+            <li>Optimized backend processes for performance and security, ensuring data integrity and reliability.</li>
+            <li>Implemented secure coding standards, patching vulnerabilities in live applications.</li>
+            <li>Integrated REST APIs and handled authentication modules securely using custom token systems.</li>
+            <li>Produced detailed VAPT reports and guided developers on code-level remediations to ensure OWASP
+              compliance.</li>
+          </ul>
+        </div>
+
+        <!-- Role New -->
+        <div class="bg-bg-card p-8 rounded-lg border border-white/5">
+          <!-- <h4 class="text-2xl font-bold text-white">Cyber Expert / IT Expert</h4> -->
+          <h4 class="text-2xl font-bold text-white">Technical Investigation Specialist</h4>
+          <p class="text-cyber-green mb-2">Gujarat Police · Mar 2025 - Apr 2025</p>
+          <ul class="list-disc list-inside text-text-secondary space-y-2 text-sm leading-relaxed">
+            <li>Supported investigations of cybercrime incidents involving digital evidence.</li>
+            <li>Conducted forensic examinations of devices, system logs, and storage media.</li>
+            <li>Delivered technical expertise in cases related to fraud, identity misuse, and cybersecurity breaches.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="bg-bg-card p-8 rounded-lg border border-white/5">
+          <h4 class="text-2xl font-bold text-white">Cyber Investigator (Consultant)</h4>
+          <p class="text-cyber-green mb-2">2023 – 2024</p>
+          <ul class="list-disc list-inside text-text-secondary space-y-2 text-sm leading-relaxed">
+            <li>Worked as a cyber investigation consultant on a national-level case titled "A Nationwide Scam: Creation
+              of Illegal/Fake Identity Documents."</li>
+            <li>Contributed to the detection, analysis, and prevention of large-scale identity fraud across multiple
+              digital platforms.</li>
+            <li>Collaborated with technical and legal teams to trace digital evidence, uncover attack vectors, and
+              strengthen preventive measures against document forgery and identity theft.</li>
+          </ul>
+        </div>
+
+        <!-- Role 3 -->
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="text-center fade-in">
+      <h3 class="text-3xl font-bold text-white mb-6 text-glow">Get in Touch</h3>
+      <p class="text-text-secondary max-w-xl mx-auto mb-8">Open to collabs and consulting — from web security audits to
+        custom admin panel designs.</p>
+      <div class="text-center">
+        <a href="mailto:praj01371@gmail.com" class="px-6 py-3 bg-cyber-green text-black rounded font-semibold">
+          Email Me
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <footer id="foot"
+    class="bg-bg-card/60 glass rounded-xl border border-cyber-green/10 max-w-6xl mx-auto mt-12 px-6 py-6 text-center text-text-secondary text-sm">
+    © <span id="year"></span> Built with 🤍 by Raj Patel
+  </footer>
+
+
+  <script>
+    /* ---------------------------
+       Terminal intro (safe)
+       --------------------------- */
+    const lines = [
+      '> Scanning attack surface...',
+      '> No critical vulnerabilities found.',
+      '> Portfolio ready ✓'
+    ];
+
+
+    const term = document.getElementById('terminal');
+    let idx = 0;
+
+    function printLine() {
+      if (idx < lines.length) {
+        // use a real newline char (not a literal backslash-n)
+        term.textContent += lines[idx] + '\n';
+        idx++;
+        setTimeout(printLine, 300);
+      } else {
+        // Short pause, then hide boot and reveal entire site without flicker
+        setTimeout(() => {
+          // hide boot terminal
+          const bootEl = document.getElementById('boot');
+          if (bootEl) bootEl.style.display = 'none';
+
+          // reveal the whole main content (was hidden via inline style)
+          const siteEl = document.getElementById('site');
+          if (siteEl) siteEl.style.display = 'block';
+
+          // ensure hero is visible (we still keep the hero display logic)
+          const heroEl = document.getElementById('hero');
+          if (heroEl) heroEl.style.display = 'block';
+
+          const footEl = document.getElementById('foot');
+          if (footEl) footEl.style.display = 'block';
+
+          // allow page scrolling again (if you blocked it elsewhere)
+          document.documentElement.style.overflow = '';
+        }, 400);
+      }
+
+    }
+    printLine();
+    // document.documentElement.style.overflow = 'hidden';
+
+    const vulnSelect = document.getElementById('vulnSelect');
+    const vulnExplain = document.getElementById('vulnExplain');
+    if (vulnSelect) {
+      vulnSelect.addEventListener('change', (e) => {
+        const v = e.target.value;
+        vulnExplain.textContent = vulnData[v] || '';
+      });
+    }
+
+    /* ---------------------------
+       GitHub repo fetcher
+       --------------------------- */
+    async function loadRepos() {
+      try {
+        // fetch public repos for username 'rajp013'
+        const res = await fetch('https://api.github.com/users/rajp013/repos?per_page=6&sort=updated', { cache: 'no-store' });
+        if (!res.ok) {
+          console.error('GitHub API returned', res.status);
+          return;
+        }
+        const data = await res.json();
+        if (!Array.isArray(data)) return;
+        const sorted = data.sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 4);
+        const container = document.getElementById('repos');
+        if (!container) return;
+
+        sorted.forEach(r => {
+          const card = document.createElement('div');
+          card.className = 'bg-bg-card p-8 rounded-lg border border-white/5 hover:border-cyber-green/40 transition';
+
+          // Use a clean template literal (no stray escape sequences)
+          card.innerHTML = `
+        <h4 class="text-2xl font-bold text-white mb-2">${escapeHtml(r.name)}</h4>
+        <p class="text-text-secondary text-sm mb-3">${escapeHtml(r.description || 'No description provided.')}</p>
+        <div class="text-xs text-cyber-green flex gap-4 items-center">
+          <span>⭐ ${r.stargazers_count}</span>
+          <span>🍴 ${r.forks_count}</span>
+          <a href="${r.html_url}" target="_blank" rel="noopener" class="text-cyber-green underline ml-auto">View Repo</a>
+        </div>
+      `;
+
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Error loading repos:', err);
+      }
+    }
+    loadRepos();
+
+    /* ---------------------------
+       Utilities
+       --------------------------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(ent => {
+        if (ent.isIntersecting) ent.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    function sendMail(e) {
+      e.preventDefault();
+      const n = document.getElementById('name')?.value.trim() || '';
+      const m = document.getElementById('message')?.value.trim() || '';
+      const em = document.getElementById('email')?.value.trim() || '';
+      const subject = encodeURIComponent('Portfolio contact from ' + n);
+      const body = encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\n\nMessage:\n' + m);
+      // use template literal properly
+      window.location.href = `mailto:praj01371@gmail.com?subject=${subject}&body=${body}`;
+      document.getElementById('sent')?.classList.remove('hidden');
+    }
+
+    /* small helper to avoid accidental HTML injection in repo fields */
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    /* ---------------------------
+       Unified Attack & Defense Lab + typewriter on load
+       --------------------------- */
+    const labSnippets = {
+      sql: {
+        attack: `<?php
+$user = $_GET['user'];
+$query = "SELECT * FROM users WHERE username = '$user'";
+$result = mysqli_query($conn, $query);
+?>`,
+        defense: `<?php
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->bind_param("s", $_GET['user']);
+$stmt->execute();
+$result = $stmt->get_result();
+?>`
+      },
+      xss: {
+        // store the visual text escaped for HTML. We'll render via textContent so no need to double-escape.
+        attack: `<?php echo $_GET['search']; ?>`,
+        defense: `<?php echo htmlspecialchars($_GET['search']); ?>`
+      }
+    };
+
+    function typeWriter(element, text, speed = 18) {
+      element.textContent = ''; // clear
+      let i = 0;
+      return new Promise(resolve => {
+        const timer = setInterval(() => {
+          element.textContent += text.charAt(i);
+          i++;
+          if (i >= text.length) {
+            clearInterval(timer);
+            resolve();
+          }
+        }, speed);
+      });
+    }
+
+    // Initialize buttons with data-state and wire click handlers
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      const key = btn.dataset.target;
+      // initial state = 'attack' (we will type attack on load)
+      btn.dataset.state = 'attack';
+      btn.textContent = 'View Defense';
+
+      btn.addEventListener('click', async () => {
+        const state = btn.dataset.state; // 'attack' or 'defense'
+        const nextState = state === 'attack' ? 'defense' : 'attack';
+        const display = document.getElementById(`${key}-display`);
+        if (!display) return;
+
+        // disable while typing
+        btn.disabled = true;
+
+        // type the next state's snippet
+        const snippet = labSnippets[key][nextState];
+        await typeWriter(display, snippet);
+
+        // update button label & state
+        btn.dataset.state = nextState;
+        btn.textContent = nextState === 'attack' ? 'View Defense' : 'View Attack';
+        btn.disabled = false;
+      });
+    });
+
+    // On page load, type the attack snippet for all demos
+    window.addEventListener('load', async () => {
+      const ordering = ['sql', 'xss']; // type sql first then xss — tweak order if you want
+      for (const key of ordering) {
+        const display = document.getElementById(`${key}-display`);
+        if (!display) continue;
+        // type attack snippet (source-of-truth in labSnippets)
+        await typeWriter(display, labSnippets[key].attack);
+        // small pause between demos
+        await new Promise(r => setTimeout(r, 350));
+      }
+    });
+  </script>
+</body>
+
+</html>
