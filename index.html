@@ -165,30 +165,52 @@
 
   <header class="sticky top-4 z-50">
     <nav
-      class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between bg-bg-card/60 glass rounded-xl border border-transparent shadow-sm">
-      <div class="flex items-center gap-4">
-        <div
-          class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-400/20 to-green-400/10 flex items-center justify-center text-sm font-semibold text-white border border-cyber-green/10">
-          RP
+      class="max-w-6xl mx-auto px-4 md:px-6 py-3 bg-bg-card/60 glass rounded-xl border border-transparent shadow-sm relative">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div
+            class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-400/20 to-green-400/10 flex items-center justify-center text-sm font-semibold text-white border border-cyber-green/10">
+            RP
+          </div>
+          <div>
+            <a href="#" class="block text-lg font-semibold hero-gradient accent-glow">Raj Patel</a>
+            <div class="text-xs text-text-secondary mono-small">Cybersecurity · PHP · Pentest</div>
+          </div>
         </div>
-        <div>
-          <a href="#" class="block text-lg font-semibold hero-gradient accent-glow">Raj Patel</a>
-          <div class="text-xs text-text-secondary mono-small">Cybersecurity · PHP · Pentest</div>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#projects"
+            class="badge text-text-secondary hover:text-black hover:bg-cyber-green transition">Projects</a>
+          <a href="#experience" class="badge text-text-secondary">Experience</a>
+          <a href="Raj_Patel.pdf" target="_blank" class="badge text-text-secondary">Resume</a>
+          <a href="#contact"
+            class="ml-2 px-3 py-1 rounded-md bg-cyber-green text-black font-semibold hover:bg-cyber-green-dark transition">Contact</a>
         </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-text-secondary hover:text-white p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
       </div>
 
-      <div class="flex items-center gap-3">
-        <a href="#projects"
-          class="badge text-text-secondary hover:text-black hover:bg-cyber-green transition">Projects</a>
-        <a href="#experience" class="badge text-text-secondary">Experience</a>
-        <a href="Raj_Patel.pdf" target="_blank" class="badge text-text-secondary">Resume</a>
-        <a href="#contact"
-          class="ml-2 px-3 py-1 rounded-md bg-cyber-green text-black font-semibold hover:bg-cyber-green-dark transition">Contact</a>
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-white/5 flex flex-col gap-3 pb-2">
+        <a href="#projects" onclick="toggleMenu()"
+          class="block py-2 px-4 rounded hover:bg-white/5 text-text-secondary">Projects</a>
+        <a href="#experience" onclick="toggleMenu()"
+          class="block py-2 px-4 rounded hover:bg-white/5 text-text-secondary">Experience</a>
+        <a href="Raj_Patel.pdf" target="_blank" onclick="toggleMenu()"
+          class="block py-2 px-4 rounded hover:bg-white/5 text-text-secondary">Resume</a>
+        <a href="#contact" onclick="toggleMenu()"
+          class="block py-2 px-4 rounded bg-cyber-green/10 text-cyber-green font-semibold">Contact Me</a>
       </div>
     </nav>
   </header>
-  <section id="boot" class="text-left font-mono text-cyber-green text-sm mb-16"
-    style="width: 60%; margin: 3rem auto 0 auto">
+  <section id="boot" class="text-left font-mono text-cyber-green text-sm mb-16 px-4"
+    style="width: 100%; max-width: 800px; margin: 3rem auto 0 auto">
     <pre id="terminal" class="leading-6 bg-bg-card border border-cyber-green/30 rounded p-4 overflow-hidden"></pre>
   </section>
   <main id="site" class="max-w-6xl mx-auto px-6 py-16" style="display:none">
@@ -198,7 +220,7 @@
 
     <!-- Hero -->
     <section class="text-center mb-24 fade-in" id="hero">
-      <div class="max-w-4xl mx-auto p-8 rounded-2xl glass card-pop border border-cyber-green/10">
+      <div class="max-w-4xl mx-auto p-6 md:p-8 rounded-2xl glass card-pop border border-cyber-green/10">
         <div class="md:flex md:items-center md:gap-8">
           <div class="flex-shrink-0">
             <div
@@ -258,7 +280,7 @@
     <!-- About -->
     <section id="about" class="mb-24 fade-in">
       <h3 class="text-3xl font-bold text-white mb-8 text-center text-glow">About Me</h3>
-      <div class="bg-bg-card p-8 rounded-lg border border-white/5 max-w-4xl mx-auto">
+      <div class="bg-bg-card p-6 md:p-8 rounded-lg border border-white/5 max-w-4xl mx-auto">
         <p class="text-lg text-text-secondary leading-relaxed">
           Cybersecurity Analyst and Penetration Tester dedicated to breaking insecure systems and rebuilding them
           securely. Skilled in PHP application security, VAPT execution, and secure coding implementation, with a strong
@@ -335,7 +357,8 @@
 
         <!-- SQL Injection Demo -->
         <div class="glass border border-white/5 rounded-xl overflow-hidden shadow-md card-pop">
-          <div class="bg-bg-card/70 px-5 py-3 flex items-center justify-between border-b border-cyber-green/10">
+          <div
+            class="bg-bg-card/70 px-5 py-3 flex flex-wrap gap-2 items-center justify-between border-b border-cyber-green/10">
             <span class="font-semibold text-cyber-green">SQL Injection</span>
             <button class="px-3 py-1 text-xs font-semibold rounded bg-cyber-green text-black toggle-btn"
               data-target="sql">View Defense</button>
@@ -345,7 +368,8 @@
 
         <!-- XSS Demo -->
         <div class="glass border border-white/5 rounded-xl overflow-hidden shadow-md card-pop">
-          <div class="bg-bg-card/70 px-5 py-3 flex items-center justify-between border-b border-cyber-green/10">
+          <div
+            class="bg-bg-card/70 px-5 py-3 flex flex-wrap gap-2 items-center justify-between border-b border-cyber-green/10">
             <span class="font-semibold text-cyber-green">Cross-Site Scripting (XSS)</span>
             <button class="px-3 py-1 text-xs font-semibold rounded bg-cyber-green text-black toggle-btn"
               data-target="xss">View Defense</button>
@@ -373,7 +397,7 @@
       <h3 class="text-3xl font-bold text-white mb-10 text-center text-glow">Experience</h3>
       <div class="space-y-10 max-w-4xl mx-auto">
         <!-- Role 1 -->
-        <div class="bg-bg-card p-8 rounded-lg border border-white/5">
+        <div class="bg-bg-card p-6 md:p-8 rounded-lg border border-white/5">
           <h4 class="text-2xl font-bold text-white">Cybersecurity Analyst & PHP Developer</h4>
           <p class="text-cyber-green mb-2">Jemistry Info Solutions LLP, India · 2023 – Present</p>
           <ul class="list-disc list-inside text-text-secondary space-y-2 text-sm leading-relaxed">
@@ -514,7 +538,7 @@
 
         sorted.forEach(r => {
           const card = document.createElement('div');
-          card.className = 'bg-bg-card p-8 rounded-lg border border-white/5 hover:border-cyber-green/40 transition';
+          card.className = 'bg-bg-card p-6 md:p-8 rounded-lg border border-white/5 hover:border-cyber-green/40 transition';
 
           // Use a clean template literal (no stray escape sequences)
           card.innerHTML = `
@@ -648,11 +672,23 @@ $result = $stmt->get_result();
         await new Promise(r => setTimeout(r, 350));
       }
     });
+
+    /* ---------------------------
+       Mobile Menu Toggle
+       --------------------------- */
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', toggleMenu);
+    }
+
+    function toggleMenu() {
+      if (mobileMenu) {
+        mobileMenu.classList.toggle('hidden');
+      }
+    }
   </script>
 </body>
 
 </html>
-
-
-
-
